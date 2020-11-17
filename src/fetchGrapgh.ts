@@ -1,9 +1,11 @@
 import { request } from "graphql-request";
 import { apiRemote, query } from "./constants";
-import { Repos } from "./types";
+import { LatestVersionItem, Repos } from "./types";
 import { parseIpfs } from "./utils";
 
-export async function fetchGraph() {
+export async function fetchAllDnpsLatestVersions(): Promise<
+  LatestVersionItem[]
+> {
   const data: Repos = await request(apiRemote, query);
   const hashes = parseIpfs(data);
   //console.log(hashes);
